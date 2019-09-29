@@ -1,0 +1,64 @@
+<% include ../partials/header.ejs%>
+<% include ../partials/navbar.ejs %>
+
+
+  
+<div style="margin-left: 50px; margin-top: 20px;">
+
+  <form action="/" method="get">
+    <input type="hidden" name="page" value="1">
+    <div class="form-group row">
+        <div class="col-form-label">
+            <input class="form-check-input" type="checkbox" id="checkpro1" name="checkproid" >
+        </div>
+        <label for="checkpro1" class="col-sm-2 col-form-label">ID</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="halprojectid" name="projectid" placeholder="ID"
+                value="">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-form-label">
+            <input class="form-check-input" type="checkbox" id="checkpro2" name="checkproname" >
+        </div>
+        <label for="checkpro2" class="col-sm-2 col-form-label">Project Name</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" id="halprojectname" name="projectname"
+                placeholder="Project Name" value="">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-form-label">
+            <input class="form-check-input" type="checkbox" id="checkpro3" name="checkpromember"  >
+        </div>
+        <label for="checkpro3" class="col-sm-2 col-form-label">Member</label>
+        <div class="col-sm-9">
+            <select class="form-control" name="projectmember">
+                <option value="">Choose your fighter member</option>
+                <% data.forEach((item) => { %>
+                <option  >
+                    <%= item.firstname%>
+                </option>
+                <%})%>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Search</button>
+    <a href='/projects/list' class="btn btn-outline-warning">Reset</a>
+</form>
+
+<table class="table">
+  <% data.forEach((item) => { %>
+  <thead>
+    <th scope="col"><%= item.name %></th>
+    <th>
+      <a href="/projects/edit/<%= item.projectid %>"><button type="button" href="" class="btn btn-primary asd">edit</button></a>
+    </th>
+  </thead>
+<% })%>
+</table>
+
+<a href="/projects/add" class="btn btn-primary" style="margin-left:50px">Add</a>
+</div>
+  </body>
+</html> 

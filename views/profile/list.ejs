@@ -1,0 +1,87 @@
+<% include ../partials/header.ejs%>
+<% include ../partials/navbar.ejs %>
+
+<div style="margin-left: 50px; margin-top: 20px;">
+    <div class="form-group" style="white-space:nowrap;">
+        <label for="exampleFormControlInput1">Email address</label>
+        <input id="exampleFormControlInput1" placeholder="<%=data.email%>" type="email" readonly="true" />
+    </div>
+
+    <form method="POST" action="/update">
+        <div class="form-group" style="white-space:nowrap;">
+            <label for="exampleFormControlInput1">Password</label>
+            <input id="exampleFormControlInput1" type="password" name="Password" />
+        </div>
+
+        // position
+        <div class="row">
+            <legend class="col-form-label col-sm-2 pt-0">Position</legend>
+            <fieldset id="position-radio" name="positionjob" class="col-form-label col-sm-10 pt-0">
+                <div class="col-sm-10">
+                    <!-- <% if(data.role === 'software') %> -->
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input class="custom-control-input" type="radio" name="position" id="position-radio1"
+                            value="manager" <%= (data.roles == 'manager') ? 'checked' : '' %>>
+                        <label class="custom-control-label" for="position-radio1">
+                            Manager
+                        </label>
+                    </div>
+
+                    
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input class="custom-control-input" type="radio" name="position" id="position-radio2"
+                            value="software" <%= (data.roles == 'software') ? 'checked' : '' %>>
+                        <label class="custom-control-label" for="position-radio2">
+                            Software Developer
+                        </label>
+                    </div>
+
+                    
+                    <div class="custom-control custom-radio my-1 mr-sm-2">
+                        <input class="custom-control-input" type="radio" name="position" id="position-radio3"
+                            value="quality" <%= (data.roles == 'quality') ? 'checked' : '' %>>
+                        <label class="custom-control-label" for="position-radio3">
+                            Quality Assurance
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+
+        // type
+        <div class="form-group row">
+            <legend class="col-form-label col-sm-2 pt-0">Working Status</legend>
+            <fieldset id="status-radio" class="col-form-label col-sm-10 pt-0">
+                <div class="col-sm-10">
+                    <% if(data.IsFulltime == true){ %>
+                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                        <input class="custom-control-input" type="checkbox" name="working_status" id="checkbox1"
+                            value="true" <%= (data.IsFulltime == true) ? 'checked' : '' %> >
+                        <label class="custom-control-label" for="checkbox1">
+                            Wants to be a Full Timer
+                        </label>
+                    </div>
+                    <% } else if( data.IsFulltime == false ) {%>
+                        <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                            <input class="custom-control-input" type="checkbox" name="working_status" id="checkbox1"
+                                value="false" <%= (data.IsFulltime == false) ? '' : 'checked' %>>
+                            <label class="custom-control-label" for="checkbox1">
+                                Wants to be a Part Time
+                            </label>
+                        </div>
+                    <%}%>
+
+                </div>
+            </fieldset>
+        </div>
+
+        <button type="submit">update</button>
+    </form>
+
+</div>
+
+
+
+</body>
+
+</html>
