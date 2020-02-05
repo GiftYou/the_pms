@@ -17,13 +17,14 @@
             <fieldset id="status-radio" class="col-form-label col-sm-10 pt-0">
                 <div class="col-sm-10">
                     <% for (let i = 0; i < editPro.length; i++ ){ %>
-                    <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                        <input class="custom-control-input" type="checkbox" name="editmemberproject" id="checkbox<%=i%>"
-                            value="<%=editPro[i]%>">
-                        <label class="custom-control-label" for="checkbox<%=i%>" <%= (editPro[i] == 'Super Admin') ? 'hidden' : '' %> >
-                            <%= editPro[i]%>
-                        </label>
-                    </div>
+                            <div class="custom-control custom-checkbox my-1 mr-sm-2">
+                                <input class="custom-control-input" type="checkbox" name="editmemberproject" id="checkbox<%=i%>"
+                                    value="<%=editPro[i].userid%>"
+                                    <%= projectmember.includes(editPro[i].userid) ? ' checked' : ''  %>/>
+                                <label class="custom-control-label" for="checkbox<%=i%>">
+                                    <%= editPro[i].fullname%>
+                                </label>
+                            </div>
                     <% } %>
                 </div>
             </fieldset>
@@ -33,6 +34,6 @@
     </form>
 </div>
 
-
 </body>
+
 </html>

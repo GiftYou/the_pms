@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
+const fileUpload = require('express-fileupload');
 var flash        = require('req-flash');
 
 var projectsRouter = require('./routes/projects');
@@ -22,11 +23,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(session({
   secret: "Shh, its a secret!",
   saveUninitialized: true,
   resave: true}));
 app.use(flash())
+app.use(fileUpload());
 
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);

@@ -6,17 +6,11 @@ const {pool, isLogged} = require('../helpers/login');
 /* GET home page. */
 
 router.get('/', isLogged, function (req, res, next) {
+  
   res.render('index')
 })
 
 router.get('/login', function(req, res, next) {
-  // let sql = 'SELECT * FROM users'  
-  // let sqlProjects = 'SELECT * FROM projects'
-  // let inputEmail = req.body.Username;
-  // let inputPassword = req.body.Password;
-  // pool.query(sql , (err, data) => {
-    
-  // })
   res.render('index', { title: 'datas' });
 });
 
@@ -25,13 +19,12 @@ router.post('/login', function (req, res) {
   pool.query(sql , [req.body.Username, req.body.Password] , (err, data) => {
     if (data == undefined || data.rows.length == 0) {
       console.log("isi yang bener");
+
       
       res.redirect("login");
     } else {
+
       req.session.user = data.rows[0]
-      console.log(typeof(req.session.user.IsFulltime));
-      
-      console.log(req.session.user);
       
       res.redirect("/projects/list");
     }
@@ -40,7 +33,7 @@ router.post('/login', function (req, res) {
 
 router.get('/logout', function (req, res, next) {
   req.session.destroy(function (err) {
-    // cannot access session here
+    
     res.redirect('/login')
   })
 })
@@ -71,13 +64,9 @@ router.post('/update', function (req, res) {
   console.log(req.body.Password);
   console.log(req.body.position);
   console.log(Boolean(req.body.working_status));
-  // console.log(typeof(req.session.user.userid));
+  
   
   
 })
-
-// router.get('/profile', function(req, res, next) {
-//   res.render('profile')
-// })
 
 module.exports = router;
